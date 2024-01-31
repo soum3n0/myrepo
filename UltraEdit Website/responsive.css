@@ -1,0 +1,61 @@
+@media screen and (min-width: 4050px) {
+    .grid_design {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 1240px) {
+    .grid_design {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .grid_design {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        gap: 100px;
+    }
+}
+
+@media screen and (max-width: 685px) {
+    nav {
+        padding: 5px;
+        gap: 50px;
+    }
+}
+
+@media screen and (max-width: 685px) {
+    nav {
+        gap: 0px;
+        justify-content: center;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    nav ul li {
+        font-size: small;
+    }
+
+    nav ul {
+        gap: 15px;
+    }
+
+    .first {
+        gap: 10px;
+        margin: 83px 64px;
+    }
+
+    .version {
+        padding-left: 5px;
+        padding-top: 1px;
+    }
+
+    .second span {
+        font-size: 17px;
+    }
+}
