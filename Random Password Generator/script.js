@@ -105,8 +105,13 @@ generateBtn.addEventListener('click', ()=>{
         handleSlider(passwordLength);
     }
     password='';
-    for(let i = 0; i<passwordLength; i++){
-        let ch = funs[getRandomInteger(0,funs.length)]();
+    let funsLength = funs.length;
+    for(let i=0; i<funsLength; i++){
+        let ch = funs[i]();
+        password = password + ch;
+    }
+    for(let i = 0; i<passwordLength-funsLength; i++){
+        let ch = funs[getRandomInteger(0,funsLength)]();
         password = password + ch;
     }
     passwordDisplay.value = password;
