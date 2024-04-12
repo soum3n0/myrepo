@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="wrapper flex flex-col">
+        <h1 class="heading">Password Generator</h1>
+
+        <!-- Display Password -->
+        <div class="display-password rel flex space-bet sub-wrapper">
+            <input type="text" class="password" placeholder="Password" value="" disabled>
+            <div class="copy-icon">
+                <span class="copy-msg"></span>
+                <i class="fa-regular fa-copy"></i>
+            </div>
+        </div>
+
+        <div class="password-details flex flex-col sub-wrapper">
+            <!-- Password Length -->
+            <div class="password-length flex space-bet">
+                <div class="password-length-text">Password Length</div>
+                <div class="password-length-counter">0</div>
+            </div>
+
+            <!-- Slider -->
+            <input type="range" id="slider" name="points" min="0" max="20">
+
+            <!-- Checkbox -->
+            <div class="checkbox-btn flex flex-col">
+                <div>
+                    <input type="checkbox" name="uppercase" id="uppercase">
+                    <label for="uppercase">Include Uppercase Letters</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" name="lowercase" id="lowercase">
+                    <label for="lowercase">Include Lowercase Letters</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" name="numbers" id="numbers">
+                    <label for="numbers">Include Numbers</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" name="symbols" id="symbols">
+                    <label for="symbols">Include Symbols</label>
+                </div>
+            </div>
+
+            <!-- Strength -->
+            <div class="strength flex space-bet">
+                <div class="strength-txt">Strength</div>
+                <div class="strength-circle"></div>
+            </div>
+
+            <!-- Generate button -->
+            <div>
+                <button class="generate-btn">Generate Password</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/27650559d0.js" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
