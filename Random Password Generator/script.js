@@ -9,7 +9,6 @@ const numbersCheck = document.querySelector('#numbers');
 const symbolCheck = document.querySelector('#symbols');
 const indicator = document.querySelector('.strength-circle');
 const generateBtn = document.querySelector('.generate-btn');
-// const allCheckBox = document.querySelectorAll('input[type=checkbox]');
 
 let password = '';
 let passwordLength = 10;
@@ -20,7 +19,6 @@ function handleSlider(){
     inputSlider.value = passwordLength;
     lengthDisplay.innerText = passwordLength;
 }
-handleSlider();
 
 function setIndicator(color){
     indicator.style.backgroundColor = color;
@@ -47,6 +45,22 @@ function generateRandomSymbol(){
     return symbol[getRandomInteger(0, symbol.length)];
 }
 
+function shufflePassword(arr){
+    for(let i = arr.length-1; i>0; i--){
+        let randomIndex = Math.floor(Math.random() * (i+1));
+
+        let ch = arr[i];
+        arr[i] = arr[randomIndex];
+        arr[randomIndex] = ch;
+    }
+    
+    let str = '';
+    arr.forEach((e) => {
+        str += e;
+    });
+    return str;
+}
+
 function calculateStrength(){
     let upper = uppercaseCheck.checked;
     let lower = lowercaseCheck.checked;
@@ -64,7 +78,7 @@ function calculateStrength(){
 
 async function copyContent(){
     try{
-        await navigate.clipboard.writeText(passwordDisplay.value);
+        await navigator.clipboard.writeText(passwordDisplay.value);
         copyMsg.innerText='Copied';
     }catch(e){
         copyMsg.innerText='Failed!';
@@ -72,7 +86,7 @@ async function copyContent(){
     copyMsg.classList.add('active');
     setTimeout(()=>{
         copyMsg.classList.remove('active');
-    }, 2000);
+    }, 1000);
 }
 
 inputSlider.addEventListener('input', (e)=>{
@@ -88,6 +102,8 @@ copyBtn.addEventListener('click', ()=>{
 
 generateBtn.addEventListener('click', ()=>{
     let funs = [];
+
+    //Get checked items
     if(uppercaseCheck.checked){
         funs.push(generateUpperCase);
     }
@@ -100,20 +116,33 @@ generateBtn.addEventListener('click', ()=>{
     if(symbolCheck.checked){
         funs.push(generateRandomSymbol);
     }
+
+    //If try to get less length password than password type
     if(funs.length > passwordLength){
         passwordLength =funs.length;
         handleSlider(passwordLength);
     }
     password='';
     let funsLength = funs.length;
+
+    //Compulsory
     for(let i=0; i<funsLength; i++){
         let ch = funs[i]();
         password = password + ch;
     }
+
+    //Additional
     for(let i = 0; i<passwordLength-funsLength; i++){
         let ch = funs[getRandomInteger(0,funsLength)]();
         password = password + ch;
     }
+
+    //Shuffle password
+    password = shufflePassword(Array.from(password));
+
+    //Display Password
     passwordDisplay.value = password;
+
+    //Strength 
     calculateStrength();
 })

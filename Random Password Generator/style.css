@@ -1,13 +1,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*{
+*, *::after, *::before{
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-style: normal;
     font-weight: 400;
+    box-sizing: border-box;
 }
 
 .flex{
@@ -36,10 +37,9 @@
 }
 
 .sub-wrapper{
-    width: 300px;
+    width: 350px;
     padding: 30px;
     color: white;
-    /* justify-content: center; */
     background-color: indigo;
     border-radius: 15px;
     gap: 15px;
@@ -54,26 +54,28 @@
     justify-content: center;
     padding-top: 15px;
     padding-bottom: 15px;
-    /* z-index: 1; */
 }
 
 .password{
     width: 90%;
     height: 35px;
-    /* border: 1px solid black; */
     border-radius: 15px;
     background-color: inherit;
     color: yellow;
     font-size: larger;
+    text-align: center;
 }
 
-.active{
-    scale: 1;
+.password::placeholder{
+    text-align: center;
+}
+
+.copy-icon{
+    cursor: pointer;
 }
 
 .copy-msg{
     position: absolute;
-    scale: 0;
     right: 5px;
     top: -25px;
     border: 1px solid black;
@@ -81,23 +83,37 @@
     background-color:antiquewhite;
     color: black;
     padding: 5px;
-    transition: 0.5s ease-in-out;
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: bottom;
+    transition: all 250ms ease-in-out;
+}
+
+.active{
+    opacity: 1;
+    transform: scale(1);
 }
 
 .password-length-counter{
     color: yellow;
 }
 
+#slider{
+    cursor: pointer;
+}
+
 .checkbox-btn{
     gap: 3px;
+    pointer-events: none;
 }
 
 input[type="checkbox"]{
     accent-color: green;
+    pointer-events: all;
+    cursor: pointer;
 }
 
 .strength-circle{
-    /* border: 1px solid black; */
     height: 15px;
     width: 15px;
     border-radius: 50px;
