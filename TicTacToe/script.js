@@ -1,6 +1,7 @@
 const gameInfo = document.querySelector(".game-info");
 const boxes = document.querySelectorAll(".box");
-const btn = document.querySelector(".btn");
+const displayGameOver = document.querySelector(".game-over-container");
+const winText = document.querySelector(".game-over-text");
 
 let gameGrid;
 let player;
@@ -22,7 +23,7 @@ function initGrid(){
         // Give default CSS property
         box.classList.remove('win');
     });
-    btn.classList.remove('active');
+    displayGameOver.classList.remove('active');
 };
 
 initGrid();
@@ -45,7 +46,7 @@ function checkGameOver(){
     })
     if(winner !== ""){
         disableCurser();
-        gameInfo.innerText = `Winner - ${winner}`;
+        winText.innerText = `Winner - ${winner}`;
         return true;
     }
 
@@ -56,7 +57,7 @@ function checkGameOver(){
     });
 
     if(count === 9){
-        gameInfo.innerText = `It's a Tie`;
+        winText.innerText = `It's a Tie`;
         return true;
     }
     return false;
@@ -69,7 +70,7 @@ function handleClick(index){
         
         //Check if game complete
         if(checkGameOver()){
-            btn.classList.add('active');
+            displayGameOver.classList.add('active');
             return;
         }
 
@@ -88,4 +89,4 @@ boxes.forEach((box, index)=>{
     });
 })
 
-btn.addEventListener('click', initGrid);
+displayGameOver.addEventListener('click', initGrid);

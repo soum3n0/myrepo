@@ -59,20 +59,39 @@
 
 .btn{
     color: white;
-    position: absolute;
-    bottom: 3rem;
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 5rem;
     cursor: pointer;
-    display: none;
 }
 
-.btn.active{
-    display: flex;
+.game-over-text{
+    color: #54e229;
+    font-size: 3rem;
 }
 
 .win{
     background-color: rgba(0, 255, 0, 0.3);
 }
+
+.game-over-container{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    align-items: center;
+    justify-content: center;
+    width: 25rem;
+    border-radius: 3rem;
+    background-color: rgba(85, 85, 7, 0.75);
+    aspect-ratio: 1/1;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.3s ease-in-out;
+    transform: scale(0);
+}
+
+.game-over-container.active{
+    transform: scale(1);
+}
+
