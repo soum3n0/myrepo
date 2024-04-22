@@ -2,9 +2,16 @@ const gameInfo = document.querySelector(".game-info");
 const boxes = document.querySelectorAll(".box");
 const displayGameOver = document.querySelector(".game-over-container");
 const winText = document.querySelector(".game-over-text");
+const newGame = document.querySelector(".new-game");
+
+const computer = document.querySelector(".game-mode-computer");
+const friend = document.querySelector(".game-mode-friend");
+const gameScreen = document.querySelector(".game-screen");
+const homeScreen = document.querySelector(".home-screen");
 
 let gameGrid;
 let player;
+let comp;
 let winnerList = [
     [0,1,2], [3,4,5], [6,7,8],
     [0,3,6], [1,4,7], [2,5,8],
@@ -12,6 +19,8 @@ let winnerList = [
 ];
 
 function initGrid(){
+    homeScreen.classList.add("active");
+    comp = false;
     player = 'X';
     gameGrid = ["", "", "", "", "", "", "", "", ""];
     gameInfo.innerText = `Current Player - ${player}`;
@@ -24,6 +33,7 @@ function initGrid(){
         box.classList.remove('win');
     });
     displayGameOver.classList.remove('active');
+    gameScreen.classList.remove('active');
 };
 
 initGrid();
@@ -31,6 +41,12 @@ initGrid();
 function disableCurser(){
     boxes.forEach((box)=>{
         box.style.pointerEvents = 'none';
+    });
+}
+
+function enableCurser(){
+    boxes.forEach((box)=>{
+        box.style.pointerEvents = 'all';
     });
 }
 
@@ -46,7 +62,15 @@ function checkGameOver(){
     })
     if(winner !== ""){
         disableCurser();
-        winText.innerText = `Winner - ${winner}`;
+        if(comp === true){
+            if(winner === 'X'){
+                winText.innerText = "Player Wins";
+            }else{
+                winText.innerText = "Computer Wins";
+            }
+        }else{
+            winText.innerText = `Winner - ${winner}`;
+        }
         return true;
     }
 
@@ -63,7 +87,11 @@ function checkGameOver(){
     return false;
 }
 
-function handleClick(index){
+function delay(duration) {
+    return new Promise(resolve => setTimeout(resolve, duration));
+}
+
+async function handleClick(index){
     if(gameGrid[index] === ""){
         gameGrid[index] = player;
         boxes[index].innerText = player;
@@ -74,10 +102,30 @@ function handleClick(index){
             return;
         }
 
-        if(player === 'X'){
-            player = '0';
+        if(comp === true){
+            gameInfo.innerText = "Current Player - Computer";
+            let arr=[];
+            gameGrid.forEach((content, index)=>{
+                if(content === ""){
+                    arr.push(index);
+                }
+            });
+            let ind = Math.floor(Math.random() * arr.length);
+            disableCurser();
+            await delay(1000);
+            enableCurser();
+            gameGrid[arr[ind]] = '0';
+            boxes[arr[ind]].innerText = '0';
+            if(checkGameOver()){
+                displayGameOver.classList.add('active');
+                return;
+            }
         }else{
-            player = 'X';
+            if(player === 'X'){
+                player = '0';
+            }else{
+                player = 'X';
+            }
         }
         gameInfo.innerText = `Current Player - ${player}`;
     }
@@ -89,4 +137,15 @@ boxes.forEach((box, index)=>{
     });
 })
 
-displayGameOver.addEventListener('click', initGrid);
+friend.addEventListener("click", ()=>{
+    homeScreen.classList.remove("active");
+    gameScreen.classList.add("active");
+});
+
+computer.addEventListener("click", ()=>{
+    homeScreen.classList.remove("active");
+    gameScreen.classList.add("active");
+    comp = true;
+});
+
+newGame.addEventListener('click', initGrid);

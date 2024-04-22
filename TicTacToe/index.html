@@ -10,26 +10,37 @@
 
 <body>
     <div class="wrapper">
-        <p class="game-info"></p>
+        <div class="home-screen">
+            <h1>TicTacToe Game</h1>
 
-        <div class="tic-tac-toe">
-            <div class="box border-right border-down"></div>
-            <div class="box border-right border-down"></div>
-            <div class="box border-down"></div>
-            <div class="box border-right border-down"></div>
-            <div class="box border-right border-down"></div>
-            <div class="box border-down"></div>
-            <div class="box border-right"></div>
-            <div class="box border-right"></div>
-            <div class="box"></div>
+            <div class="game-mode">
+                <h3>Play with</h3>
+                <button class="btn game-mode-computer">Computer</button>
+                <button class="btn game-mode-friend">Friend</button>
+            </div>
         </div>
 
-        <div class="game-over-container">
-            <p class="game-over-text"></p>
-            <button class="btn">New Game</button>
+        <div class="game-screen">
+            <p class="game-info"></p>
+
+            <div class="tic-tac-toe">
+                <div class="box border-right border-down"></div>
+                <div class="box border-right border-down"></div>
+                <div class="box border-down"></div>
+                <div class="box border-right border-down"></div>
+                <div class="box border-right border-down"></div>
+                <div class="box border-down"></div>
+                <div class="box border-right"></div>
+                <div class="box border-right"></div>
+                <div class="box"></div>
+            </div>
+
+            <div class="game-over-container">
+                <p class="game-over-text"></p>
+                <button class="btn new-game">New Game</button>
+            </div>
         </div>
     </div>
-
 
     <script src="./script.js"></script>
 </body>
