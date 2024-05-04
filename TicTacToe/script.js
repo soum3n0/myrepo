@@ -91,6 +91,38 @@ function delay(duration) {
     return new Promise(resolve => setTimeout(resolve, duration));
 }
 
+/*
+function checkIfComputerCanWin(){
+    //Here forEach loop can't be used because it does not provide a way to return from within the loop, it always iterate through all elements of the array.
+    //That's why code is not working
+    winnerList.forEach((arr)=>{
+        if (gameGrid[arr[0]] === gameGrid[arr[1]] && gameGrid[arr[1]] === '0' && gameGrid[arr[2]] === "") {
+            return arr[2];
+        }else if(gameGrid[arr[1]] === gameGrid[arr[2]] && gameGrid[arr[2]] === '0' && gameGrid[arr[0]] === ""){
+            return arr[0];
+        }else if(gameGrid[arr[2]] === gameGrid[arr[0]] && gameGrid[arr[2]] === '0' && gameGrid[arr[1]] === ""){
+            return arr[1];
+        }
+    });
+    return -1;
+}
+
+function preventPlayerWinning(){
+    //Here forEach loop can't be used because it does not provide a way to return from within the loop, it always iterate through all elements of the array.
+    //That's why code is not working
+    winnerList.forEach((arr)=>{
+        if (gameGrid[arr[0]] === gameGrid[arr[1]] && gameGrid[arr[1]] === 'X' && gameGrid[arr[2]] === "") {
+            return arr[2];
+        }else if(gameGrid[arr[1]] === gameGrid[arr[2]] && gameGrid[arr[2]] === 'X' && gameGrid[arr[0]] === ""){
+            return arr[0];
+        }else if(gameGrid[arr[2]] === gameGrid[arr[0]] && gameGrid[arr[2]] === 'X' && gameGrid[arr[1]] === ""){
+            return arr[1];
+        }
+    });
+    return -1;
+}
+*/
+
 function checkIfComputerCanWin() {
     for (let i = 0; i < winnerList.length; i++) {
         const arr = winnerList[i];
@@ -118,6 +150,7 @@ function preventPlayerWinning() {
     }
     return -1;
 }
+
 
 async function handleClick(index) {
     if (gameGrid[index] === "") {
