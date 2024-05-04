@@ -91,29 +91,31 @@ function delay(duration) {
     return new Promise(resolve => setTimeout(resolve, duration));
 }
 
-function checkIfComputerCanWin(){
-    winnerList.forEach((arr)=>{
+function checkIfComputerCanWin() {
+    for (let i = 0; i < winnerList.length; i++) {
+        const arr = winnerList[i];
         if (gameGrid[arr[0]] === gameGrid[arr[1]] && gameGrid[arr[1]] === '0' && gameGrid[arr[2]] === "") {
             return arr[2];
-        }else if(gameGrid[arr[1]] === gameGrid[arr[2]] && gameGrid[arr[2]] === '0' && gameGrid[arr[0]] === ""){
+        } else if (gameGrid[arr[1]] === gameGrid[arr[2]] && gameGrid[arr[2]] === '0' && gameGrid[arr[0]] === "") {
             return arr[0];
-        }else if(gameGrid[arr[2]] === gameGrid[arr[0]] && gameGrid[arr[2]] === '0' && gameGrid[arr[1]] === ""){
+        } else if (gameGrid[arr[2]] === gameGrid[arr[0]] && gameGrid[arr[2]] === '0' && gameGrid[arr[1]] === "") {
             return arr[1];
         }
-    });
-    return "";
+    }
+    return -1;
 }
 
-function preventPlayerWinning(){
-    winnerList.forEach((arr)=>{
+function preventPlayerWinning() {
+    for (let i = 0; i < winnerList.length; i++) {
+        const arr = winnerList[i];
         if (gameGrid[arr[0]] === gameGrid[arr[1]] && gameGrid[arr[1]] === 'X' && gameGrid[arr[2]] === "") {
             return arr[2];
-        }else if(gameGrid[arr[1]] === gameGrid[arr[2]] && gameGrid[arr[2]] === 'X' && gameGrid[arr[0]] === ""){
+        } else if (gameGrid[arr[1]] === gameGrid[arr[2]] && gameGrid[arr[2]] === 'X' && gameGrid[arr[0]] === "") {
             return arr[0];
-        }else if(gameGrid[arr[2]] === gameGrid[arr[0]] && gameGrid[arr[2]] === 'X' && gameGrid[arr[1]] === ""){
+        } else if (gameGrid[arr[2]] === gameGrid[arr[0]] && gameGrid[arr[2]] === 'X' && gameGrid[arr[1]] === "") {
             return arr[1];
         }
-    });
+    }
     return -1;
 }
 
